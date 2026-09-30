@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="site-title">Cargando..</title>
+    
+    <link rel="icon" href="../assets/img/logox.png">
+    <link rel="stylesheet" href="../assets/css/style.css">
+     
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            cyan: 'var(--accent-cyan)',
+                            red: 'var(--accent-red)',
+                            bg: 'var(--bg-main)',
+                            card: 'var(--bg-card)',
+                            text: 'var(--text-main)',
+                            muted: 'var(--text-muted)',
+                            border: 'var(--border-color)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="relative selection:bg-cyber-cyan selection:text-black min-h-screen flex flex-col">
+
+    <canvas id="webgl-canvas"></canvas>
+
+    <div class="relative z-20 flex flex-col min-h-screen">
+
+        <!-- HEADER SIMPLE -->
+        <header class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4">
+            <div class="max-w-7xl mx-auto flex items-center justify-between glass-panel rounded-2xl px-4 sm:px-6 py-3">
+                <a href="../index.html" class="flex items-center gap-2 group">
+                    <img src="../assets/img/logogalax.png" alt="GalaxGPS" class="h-9 w-auto object-contain">
+                </a>
+
+                <a href="../index.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyber-cyan/15 border border-cyber-cyan/40 text-cyber-cyan font-bold text-xs hover:bg-cyber-cyan hover:text-black transition-all">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    Volver al Inicio
+                </a>
+            </div>
+        </header>
+
+        <!-- SECCIÓN DE CONTENIDO LEGAL -->
+        <main class="pt-32 pb-20 px-4 sm:px-6 max-w-4xl mx-auto w-full flex-grow">
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl space-y-8">
+                
+                <div class="border-b border-cyber-border pb-6">
+                    <h1 class="text-3xl sm:text-4xl font-black text-cyber-text">Política de Privacidad y Términos del Servicio</h1>
+                    <p class="text-xs font-mono text-cyber-cyan mt-2">ÚLTIMA ACTUALIZACIÓN: 2026</p>
+                </div>
+
+                <section class="space-y-4">
+                    <h2 class="text-xl font-bold text-cyber-text">1. Términos del Servicio</h2>
+                    <p class="text-sm text-cyber-muted leading-relaxed">
+                        Al utilizar e instalar los servicios de telemetría y rastreo satelital de <strong id="company-name-1">GalaxGPS</strong>, usted acepta cumplir con los términos y condiciones establecidos en este acuerdo. Nuestros servicios están destinados exclusivamente a la seguridad vehicular, prevención de robo y gestión de flotas.
+                    </p>
+                </section>
+
+                <section class="space-y-4">
+                    <h2 class="text-xl font-bold text-cyber-text">2. Privacidad y Tratamiento de Datos</h2>
+                    <p class="text-sm text-cyber-muted leading-relaxed">
+                        Garantizamos la máxima confidencialidad en el manejo de coordenadas GPS, historiales de velocidad, geocercas e información del usuario. Ninguna información de ubicación es compartida con terceros sin la autorización expresa del titular o una orden judicial legalmente emitida.
+                    </p>
+                </section>
+
+                <section class="space-y-4">
+                    <h2 class="text-xl font-bold text-cyber-text">3. Responsabilidad sobre Inmovilización Remota</h2>
+                    <p class="text-sm text-cyber-muted leading-relaxed">
+                        La función de apagado de motor remoto es una herramienta preventiva ante situaciones de robo o emergencia. El cliente asume la responsabilidad de activar esta función bajo circunstancias que no pongan en riesgo la seguridad vial o la vida de terceros.
+                    </p>
+                </section>
+
+                <section class="space-y-4">
+                    <h2 class="text-xl font-bold text-cyber-text">4. Planes y Mensualidades</h2>
+                    <p class="text-sm text-cyber-muted leading-relaxed">
+                        El mantenimiento activo de la plataforma requiere el pago oportuno de las mensualidades correspondientes al plan seleccionado ($24/mes para vehículos particulares y $17/mes para motocicletas). El incumplimiento en los pagos puede suspender la transmisión de datos satelitales en tiempo real.
+                    </p>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- FOOTER LEGAL -->
+        <footer class="border-t border-cyber-border py-8 px-4 text-center text-xs text-cyber-muted font-mono flex flex-col sm:flex-row justify-between items-center max-w-7xl mx-auto w-full gap-4">
+            <div id="terms-copyright">© 2026 GALAXGPS VENEZUELA. TODOS LOS DERECHOS RESERVADOS.</div>
+            <div>
+                Desarrollado por <a id="terms-developer" href="#" target="_blank" rel="noopener noreferrer" class="font-bold text-cyber-cyan hover:underline">OndarDev</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <script type="module">
+        import { companyConfig } from '../assets/config/company.js';
+
+        const titleEl = document.getElementById('site-title');
+        if (titleEl) {
+            titleEl.innerText = `${companyConfig.name} - Términos del Servicio`;
+        }
+
+        const comp1 = document.getElementById('company-name-1');
+        if (comp1) comp1.textContent = companyConfig.name;
+
+        const copyEl = document.getElementById('terms-copyright');
+        if (copyEl) copyEl.textContent = `© ${new Date().getFullYear()} ${companyConfig.name.toUpperCase()}. TODOS LOS DERECHOS RESERVADOS.`;
+
+        const devLink = document.getElementById('terms-developer');
+        if (devLink) {
+            devLink.href = companyConfig.developerUrl;
+            devLink.textContent = companyConfig.developerName;
+        }
+    </script>
+
+    <script>
+        lucide.createIcons();
+
+        let scene, camera, renderer, particleSystem;
+
+        function init3D() {
+            const canvas = document.getElementById('webgl-canvas');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 30;
+
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+            const count = 400;
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(count * 3);
+
+            for(let i=0; i<count*3; i++) {
+                positions[i] = (Math.random() - 0.5) * 100;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const material = new THREE.PointsMaterial({
+                color: 0x00f0ff,
+                size: 0.15,
+                transparent: true,
+                opacity: 0.3
+            });
+
+            particleSystem = new THREE.Points(geometry, material);
+            scene.add(particleSystem);
+        }
+
+        function animate3D() {
+            requestAnimationFrame(animate3D);
+            if(particleSystem) {
+                particleSystem.rotation.y += 0.0002;
+            }
+            renderer.render(scene, camera);
+        }
+
+        window.onload = function() {
+            init3D();
+            animate3D();
+        };
+    </script>
+</body>
+</html>

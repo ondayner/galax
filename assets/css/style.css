@@ -1,0 +1,106 @@
+/* Configuración Nativa de Modo Claro/Oscuro con light-dark() */
+:root {
+    color-scheme: light dark;
+
+    /* Variables de Color Dinámicas */
+    --bg-main: light-dark(#f8fafc, #08080c);
+    --bg-card: light-dark(rgba(255, 255, 255, 0.88), rgba(22, 24, 36, 0.65));
+    --text-main: light-dark(#0f172a, #f3f4f6);
+    --text-muted: light-dark(#475569, #9ca3af);
+    --border-color: light-dark(rgba(15, 23, 42, 0.12), rgba(255, 255, 255, 0.08));
+    --border-hover: light-dark(rgba(2, 132, 199, 0.6), rgba(0, 240, 255, 0.5));
+    
+    --accent-cyan: light-dark(#0284c7, #00f0ff);
+    --accent-red: light-dark(#e11d48, #ff2a5f);
+}
+
+html.light {
+    color-scheme: light;
+}
+
+html.dark {
+    color-scheme: dark;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Paneles Glassmorphism */
+.glass-panel {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.glass-panel-hover:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+}
+
+/* Canvas para Three.js */
+#webgl-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Contenedor Flotante Optimizado para GPU */
+#scroll-hologram-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    z-index: 10;
+    pointer-events: none;
+    will-change: transform, opacity;
+    transform-style: preserve-3d;
+}
+
+/* Animación de rotación */
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+    animation: spinSlow 25s linear infinite;
+}
+
+/* Overlay sutil */
+.scanline-overlay {
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        transparent 50%,
+        rgba(0, 0, 0, 0.08) 50%,
+        rgba(0, 0, 0, 0.08)
+    );
+    background-size: 100% 4px;
+}
+
+/* Scrollbar Personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-cyan);
+}
