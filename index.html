@@ -29,6 +29,20 @@
                     },
                     fontFamily: {
                         sans: ['Space Grotesk', 'Inter', 'sans-serif'],
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        }
+                    },
+                    animation: {
+                        marquee: 'marquee 20s linear infinite',
+                        float: 'float 5s ease-in-out infinite',
                     }
                 }
             }
@@ -86,9 +100,11 @@
                     <img src="assets/img/logogalax.png" alt="GalaxGPS" 
                         class="h-9 w-auto object-contain transition-all duration-300 group-hover:scale-105 drop-shadow-[0_0_8px_rgba(0,240,255,0.7)] group-hover:drop-shadow-[0_0_14px_rgba(0,240,255,0.95)]">
                 </a>
+
                 <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-cyber-muted">
                     <a href="#hero" class="hover:text-cyber-cyan transition-colors" data-i18n="nav_start">Inicio</a>
                     <a href="#services" class="hover:text-cyber-cyan transition-colors" data-i18n="nav_services">Servicios</a>
+                    <a href="#gallery" class="hover:text-cyber-cyan transition-colors">Plataforma</a>
                     <a href="#pricing" class="hover:text-cyber-cyan transition-colors" data-i18n="nav_plans">Planes</a>
                     <a href="#contact" class="hover:text-cyber-cyan transition-colors" data-i18n="nav_contact">Contacto</a>
                 </nav>
@@ -119,6 +135,7 @@
             <div id="mobile-drawer" class="hidden md:hidden max-w-7xl mx-auto mt-2 glass-panel rounded-2xl p-6 flex-col gap-4 text-center font-medium">
                 <a href="#hero" onclick="toggleMobileMenu()" class="py-2 text-cyber-text hover:text-cyber-cyan" data-i18n="nav_start">Inicio</a>
                 <a href="#services" onclick="toggleMobileMenu()" class="py-2 text-cyber-text hover:text-cyber-cyan" data-i18n="nav_services">Servicios</a>
+                <a href="#gallery" onclick="toggleMobileMenu()" class="py-2 text-cyber-text hover:text-cyber-cyan">Plataforma</a>
                 <a href="#pricing" onclick="toggleMobileMenu()" class="py-2 text-cyber-text hover:text-cyber-cyan" data-i18n="nav_plans">Planes</a>
                 <a href="#contact" onclick="toggleMobileMenu()" class="py-2 text-cyber-text hover:text-cyber-cyan" data-i18n="nav_contact">Contacto</a>
                 <a id="link-mobile-platform" href="#" target="_blank" rel="noopener noreferrer" class="py-3 rounded-xl bg-cyber-cyan text-black font-bold text-sm" data-i18n="web_platform">
@@ -127,23 +144,24 @@
             </div>
         </header>
 
-        <!-- SECCIÓN 1: INICIO -->
+        <!-- SECCIÓN 1: HERO -->
         <section id="hero" class="relative min-h-screen flex items-center pt-28 pb-16 px-4 sm:px-6">
-            <div class="max-w-5xl mx-auto w-full text-center">
-                <div class="space-y-8 z-20">
+            <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 text-center lg:text-left space-y-8 z-20">
                     <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-cyber-text leading-[1.1]">
                         <span data-i18n="hero_title_1">PROTEGE TU</span> <br>
                         <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyber-cyan via-blue-500 to-cyber-red">
                             <span data-i18n="hero_title_2">INVERSIÓN</span>
-                        </span>
+                        </span> <br>
                         <span data-i18n="hero_title_3">CON CONFIANZA</span>
                     </h1>
 
-                    <p class="text-base sm:text-xl text-cyber-muted max-w-2xl font-light leading-relaxed mx-auto" data-i18n="hero_subtitle">
+                    <p class="text-base sm:text-xl text-cyber-muted max-w-2xl font-light leading-relaxed mx-auto lg:mx-0" data-i18n="hero_subtitle">
                         Sistema de rastreo satelital de máxima precisión. Monitoreo en tiempo real, apagado de motor remoto y geocercas inteligentes para tu vehículo o motocicleta.
                     </p>
 
-                    <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
                         <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer" 
                            class="flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel hover:border-cyber-cyan hover:scale-105 transition-all">
                             <i data-lucide="play" class="w-7 h-7 text-green-500 fill-current"></i>
@@ -169,7 +187,7 @@
                         </a>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-cyber-border max-w-xl mx-auto">
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-cyber-border max-w-xl mx-auto lg:mx-0">
                         <div>
                             <div class="text-xl sm:text-3xl font-black text-cyber-text font-mono">&lt; 0.5s</div>
                             <div class="text-[11px] text-cyber-muted uppercase tracking-wider mt-1" data-i18n="stat_latency">Respuesta Telemetría</div>
@@ -184,8 +202,101 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- MOCKUP HERO: ILUSTRACIÓN VECTORIAL SVG MAPA SATELITAL / GLOBAL EN TONOS AZULES (OPCIÓN A) -->
+                <div class="lg:col-span-5 relative flex justify-center items-center z-20">
+                    <div class="absolute w-80 h-80 rounded-full bg-cyber-cyan/20 blur-3xl animate-pulse"></div>
+                    <div class="relative w-full max-w-md rounded-3xl p-6 glass-panel border border-cyber-cyan/40 shadow-[0_0_50px_rgba(0,240,255,0.2)] animate-float">
+                        <svg class="w-full h-auto text-cyber-cyan" viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="var(--accent-cyan)" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.3"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Malla / Grilla de Coordenadas -->
+                            <path d="M 50,0 V 300 M 150,0 V 300 M 250,0 V 300 M 350,0 V 300 M 450,0 V 300" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="4 4"/>
+                            <path d="M 0,50 H 500 M 0,120 H 500 M 0,190 H 500 M 0,260 H 500" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="4 4"/>
+                            
+                            <!-- Silueta Simplificada del Mapa Terrestre -->
+                            <path d="M 80,80 Q 120,60 160,90 T 200,140 T 150,220 T 90,180 Z" fill="url(#mapGradient)" opacity="0.3"/>
+                            <path d="M 260,70 Q 320,50 380,80 T 420,150 T 360,240 T 280,180 Z" fill="url(#mapGradient)" opacity="0.3"/>
+                            
+                            <!-- Rutas de Telemetría Satelital -->
+                            <path d="M 120,110 Q 220,40 340,120" stroke="var(--accent-cyan)" stroke-width="2" stroke-dasharray="6 4" class="animate-pulse"/>
+                            <path d="M 150,190 Q 250,250 380,160" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4 4"/>
+                            
+                            <!-- Nodos / Pines GPS de Posicionamiento -->
+                            <g class="animate-ping" style="animation-duration: 3s;">
+                                <circle cx="120" cy="110" r="8" fill="var(--accent-cyan)" opacity="0.7"/>
+                                <circle cx="340" cy="120" r="8" fill="var(--accent-cyan)" opacity="0.7"/>
+                            </g>
+                            <circle cx="120" cy="110" r="4" fill="#ffffff"/>
+                            <circle cx="340" cy="120" r="4" fill="#ffffff"/>
+                            <circle cx="260" cy="160" r="5" fill="var(--accent-red)"/>
+                            
+                            <!-- Etiqueta de Interfaz GPS -->
+                            <rect x="180" y="220" width="140" height="35" rx="8" fill="var(--bg-card)" stroke="var(--accent-cyan)" stroke-width="1.5"/>
+                            <text x="250" y="242" fill="var(--text-main)" font-size="11" font-family="monospace" text-anchor="middle" font-weight="bold">GPS LIVE: ACTIVE</text>
+                        </svg>
+                    </div>
+                </div>
+
             </div>
         </section>
+
+        <!-- COMPONENTE DRIFT WALL / MARQUEE (INFINITO SIN CORTES) -->
+        <div class="overflow-hidden whitespace-nowrap py-6 bg-cyber-bg/60 border-y border-cyber-border relative z-20 flex">
+            <div class="flex gap-6 animate-marquee w-max">
+                <!-- Sedán Corolla / Yaris -->
+                <div class="relative flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=600&auto=format&fit=crop" class="h-32 w-60 object-cover rounded-2xl border border-cyber-border">
+                    <span class="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-black/80 text-[11px] font-mono text-cyber-cyan font-bold border border-cyber-cyan/30">Carros / Sedanes</span>
+                </div>
+                <!-- Motocicleta Keeway / Bera -->
+                <div class="relative flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=600&auto=format&fit=crop" class="h-32 w-60 object-cover rounded-2xl border border-cyber-border">
+                    <span class="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-black/80 text-[11px] font-mono text-cyber-red font-bold border border-cyber-red/30">Motos</span>
+                </div>
+                <!-- Camioneta Hilux / Pick-Up -->
+                <div class="relative flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=600&auto=format&fit=crop" class="h-32 w-60 object-cover rounded-2xl border border-cyber-border">
+                    <span class="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-black/80 text-[11px] font-mono text-cyber-cyan font-bold border border-cyber-cyan/30">Camionetas 4x4</span>
+                </div>
+                <!-- Camión Carga NPR / NHR -->
+                <div class="relative flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=600&auto=format&fit=crop" class="h-32 w-60 object-cover rounded-2xl border border-cyber-border">
+                    <span class="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-black/80 text-[11px] font-mono text-cyber-cyan font-bold border border-cyber-cyan/30">Camiones Carga</span>
+                </div>
+                <!-- Gandola / Transporte Pesado -->
+                <div class="relative flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=600&auto=format&fit=crop" class="h-32 w-60 object-cover rounded-2xl border border-cyber-border">
+                    <span class="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-black/80 text-[11px] font-mono text-cyber-cyan font-bold border border-cyber-cyan/30">Gandolas / Bateas</span>
+                </div>
+
+                <!-- COPIA EXACTA PARA EL LOOP CONTINUO PERFECTO -->
+                <div class="relative flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=600&auto=format&fit=crop" class="h-32 w-60 object-cover rounded-2xl border border-cyber-border">
+                    <span class="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-black/80 text-[11px] font-mono text-cyber-cyan font-bold border border-cyber-cyan/30">Carros / Sedanes</span>
+                </div>
+                <div class="relative flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=600&auto=format&fit=crop" class="h-32 w-60 object-cover rounded-2xl border border-cyber-border">
+                    <span class="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-black/80 text-[11px] font-mono text-cyber-red font-bold border border-cyber-red/30">Motos</span>
+                </div>
+                <div class="relative flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=600&auto=format&fit=crop" class="h-32 w-60 object-cover rounded-2xl border border-cyber-border">
+                    <span class="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-black/80 text-[11px] font-mono text-cyber-cyan font-bold border border-cyber-cyan/30">Camionetas 4x4</span>
+                </div>
+                <div class="relative flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=600&auto=format&fit=crop" class="h-32 w-60 object-cover rounded-2xl border border-cyber-border">
+                    <span class="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-black/80 text-[11px] font-mono text-cyber-cyan font-bold border border-cyber-cyan/30">Camiones Carga</span>
+                </div>
+                <div class="relative flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=600&auto=format&fit=crop" class="h-32 w-60 object-cover rounded-2xl border border-cyber-border">
+                    <span class="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-black/80 text-[11px] font-mono text-cyber-cyan font-bold border border-cyber-cyan/30">Gandolas / Bateas</span>
+                </div>
+            </div>
+        </div>
 
         <!-- SECCIÓN 2: SERVICIOS -->
         <section id="services" class="py-28 px-4 sm:px-6 relative z-20 border-t border-cyber-border">
@@ -248,6 +359,49 @@
             </div>
         </section>
 
+        <!-- FLEX CAROUSEL DE ECOSISTEMA ADAPTADO A MÓVIL Y DESKTOP -->
+        <section id="gallery" class="py-20 px-4 sm:px-6 relative z-20 border-t border-cyber-border">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                    <h2 class="text-xs font-mono uppercase tracking-widest text-cyber-cyan">VISUALIZA NUESTRA TECNOLOGÍA</h2>
+                    <h3 class="text-3xl sm:text-5xl font-black text-cyber-text">Ecosistema Satelital</h3>
+                    <p class="text-cyber-muted text-base">Pasa el cursor sobre cada módulo para explorar nuestras soluciones.</p>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-4 h-auto lg:h-[500px] w-full">
+                    <!-- Modulo 1: Satélite Global -->
+                    <div class="relative min-h-[350px] lg:min-h-0 flex-1 hover:flex-[2.5] transition-all duration-500 ease-out rounded-3xl overflow-hidden group border border-cyber-border hover:border-cyber-cyan shadow-2xl cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop" alt="Telemetría Satelital" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent p-6 sm:p-8 flex flex-col justify-end">
+                            <span class="text-xs font-mono text-cyber-cyan font-bold uppercase tracking-wider">01. TELEMETRÍA GLOBAL</span>
+                            <h4 class="text-xl sm:text-2xl font-bold text-white mt-1 leading-snug">Sombra Satelital y Cobertura</h4>
+                            <p class="text-xs sm:text-sm text-gray-300 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">Monitoreo continuo de unidades pesadas y livianas con enlace directo a constelación GPS.</p>
+                        </div>
+                    </div>
+
+                    <!-- Modulo 2: Plataforma Multidispositivo -->
+                    <div class="relative min-h-[350px] lg:min-h-0 flex-1 hover:flex-[2.5] transition-all duration-500 ease-out rounded-3xl overflow-hidden group border border-cyber-border hover:border-cyber-cyan shadow-2xl cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=800&auto=format&fit=crop" alt="Plataforma Web Multidispositivo" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent p-6 sm:p-8 flex flex-col justify-end">
+                            <span class="text-xs font-mono text-cyber-cyan font-bold uppercase tracking-wider">02. CONTROL WEB & TABLET</span>
+                            <h4 class="text-xl sm:text-2xl font-bold text-white mt-1 leading-snug">Plataforma Multidispositivo</h4>
+                            <p class="text-xs sm:text-sm text-gray-300 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">Acceso a mapa interactivo, geocercas dinámicas y trazado de rutas históricas.</p>
+                        </div>
+                    </div>
+
+                    <!-- Modulo 3: Gestión Corporativa -->
+                    <div class="relative min-h-[350px] lg:min-h-0 flex-1 hover:flex-[2.5] transition-all duration-500 ease-out rounded-3xl overflow-hidden group border border-cyber-border hover:border-cyber-cyan shadow-2xl cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop" alt="Flota de Vehículos y Camiones" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent p-6 sm:p-8 flex flex-col justify-end">
+                            <span class="text-xs font-mono text-cyber-cyan font-bold uppercase tracking-wider">03. GESTIÓN CORPORATIVA</span>
+                            <h4 class="text-xl sm:text-2xl font-bold text-white mt-1 leading-snug">Protección de Flotas y Carga</h4>
+                            <p class="text-xs sm:text-sm text-gray-300 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">Inmovilización remota ante eventos no autorizados e informes de velocidad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- SECCIÓN 3: PLANES -->
         <section id="pricing" class="py-28 px-4 sm:px-6 relative z-20 border-t border-cyber-border">
             <div class="max-w-7xl mx-auto">
@@ -258,78 +412,80 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <div class="glass-panel p-8 sm:p-10 rounded-3xl border-2 border-cyber-cyan/30 hover:border-cyber-cyan transition-all flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="text-xs font-mono text-cyber-cyan font-bold uppercase" data-i18n="car_category">VEHÍCULOS / PARTICULARES</span>
-                                    <h4 class="text-3xl font-black text-cyber-text mt-1" data-i18n="car_title">Plan Carros</h4>
-                                </div>
-                                <div class="w-12 h-12 rounded-2xl bg-cyber-cyan/15 flex items-center justify-center text-cyber-cyan">
-                                    <i data-lucide="car" class="w-6 h-6"></i>
-                                </div>
-                            </div>
-
-                            <div class="space-y-4 my-8 p-6 rounded-2xl bg-cyber-bg/60 border border-cyber-border">
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm text-cyber-muted" data-i18n="equip_install">Equipo + Instalación:</span>
-                                    <span class="text-2xl font-black text-cyber-text font-mono">$100 <span class="text-xs text-cyber-muted font-normal">(pago único)</span></span>
-                                </div>
-                                <div class="h-[1px] bg-cyber-border"></div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm text-cyber-muted" data-i18n="monthly_fee">Mensualidad de Servicio:</span>
-                                    <span class="text-3xl font-black text-cyber-cyan font-mono">$24 <span class="text-xs text-cyber-muted font-normal">/mes</span></span>
-                                </div>
-                            </div>
-
-                            <ul class="space-y-3 text-sm text-cyber-text mb-8">
-                                <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-cyan"></i> <span data-i18n="inc_1">Ubicación GPS en vivo 24/7</span></li>
-                                <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-cyan"></i> <span data-i18n="inc_2">Apagado de motor vía celular</span></li>
-                                <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-cyan"></i> <span data-i18n="inc_3">Acceso App Android, iOS y Web</span></li>
-                                <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-cyan"></i> <span data-i18n="inc_4">Geocercas e historial de rutas</span></li>
-                            </ul>
+                    <!-- PLAN CARROS -->
+                    <div class="glass-panel rounded-3xl border-2 border-cyber-cyan/30 hover:border-cyber-cyan transition-all flex flex-col justify-between overflow-hidden group">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop" alt="Plan Carros" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-cyber-bg via-cyber-bg/40 to-transparent"></div>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-lg bg-cyber-cyan/20 border border-cyber-cyan/50 text-cyber-cyan font-mono text-xs font-bold uppercase" data-i18n="car_category">VEHÍCULOS / PARTICULARES</span>
                         </div>
 
-                        <a href="#contact" class="w-full py-4 rounded-xl bg-cyber-cyan text-white dark:text-black font-bold text-center hover:scale-[1.02] transition-all" data-i18n="btn_solicitar_car">
-                            Solicitar para Carro
-                        </a>
+                        <div class="p-8 sm:p-10 pt-0 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-3xl font-black text-cyber-text mb-4" data-i18n="car_title">Plan Carros</h4>
+
+                                <div class="space-y-4 my-6 p-6 rounded-2xl bg-cyber-bg/60 border border-cyber-border">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-cyber-muted" data-i18n="equip_install">Equipo + Instalación:</span>
+                                        <span class="text-2xl font-black text-cyber-text font-mono">$100 <span class="text-xs text-cyber-muted font-normal">(pago único)</span></span>
+                                    </div>
+                                    <div class="h-[1px] bg-cyber-border"></div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-cyber-muted" data-i18n="monthly_fee">Mensualidad de Servicio:</span>
+                                        <span class="text-3xl font-black text-cyber-cyan font-mono">$24 <span class="text-xs text-cyber-muted font-normal">/mes</span></span>
+                                    </div>
+                                </div>
+
+                                <ul class="space-y-3 text-sm text-cyber-text mb-8">
+                                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-cyan"></i> <span data-i18n="inc_1">Ubicación GPS en vivo 24/7</span></li>
+                                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-cyan"></i> <span data-i18n="inc_2">Apagado de motor vía celular</span></li>
+                                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-cyan"></i> <span data-i18n="inc_3">Acceso App Android, iOS y Web</span></li>
+                                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-cyan"></i> <span data-i18n="inc_4">Geocercas e historial de rutas</span></li>
+                                </ul>
+                            </div>
+
+                            <a href="#contact" class="w-full py-4 rounded-xl bg-cyber-cyan text-white dark:text-black font-bold text-center hover:scale-[1.02] transition-all" data-i18n="btn_solicitar_car">
+                                Solicitar para Carro
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="glass-panel p-8 sm:p-10 rounded-3xl border-2 border-cyber-red/30 hover:border-cyber-red transition-all flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="text-xs font-mono text-cyber-red font-bold uppercase" data-i18n="moto_category">MOTOCICLETAS</span>
-                                    <h4 class="text-3xl font-black text-cyber-text mt-1" data-i18n="moto_title">Plan Motos</h4>
-                                </div>
-                                <div class="w-12 h-12 rounded-2xl bg-cyber-red/15 flex items-center justify-center text-cyber-red">
-                                    <i data-lucide="bike" class="w-6 h-6"></i>
-                                </div>
-                            </div>
-
-                            <div class="space-y-4 my-8 p-6 rounded-2xl bg-cyber-bg/60 border border-cyber-border">
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm text-cyber-muted" data-i18n="equip_install">Equipo + Instalación:</span>
-                                    <span class="text-2xl font-black text-cyber-text font-mono">$80 <span class="text-xs text-cyber-muted font-normal">(pago único)</span></span>
-                                </div>
-                                <div class="h-[1px] bg-cyber-border"></div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm text-cyber-muted" data-i18n="monthly_fee">Mensualidad de Servicio:</span>
-                                    <span class="text-3xl font-black text-cyber-red font-mono">$17 <span class="text-xs text-cyber-muted font-normal">/mes</span></span>
-                                </div>
-                            </div>
-
-                            <ul class="space-y-3 text-sm text-cyber-text mb-8">
-                                <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-red"></i> <span data-i18n="inc_1">Ubicación GPS en vivo 24/7</span></li>
-                                <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-red"></i> <span data-i18n="inc_2">Apagado de motor vía celular</span></li>
-                                <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-red"></i> <span data-i18n="inc_3">Acceso App Android, iOS y Web</span></li>
-                                <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-red"></i> <span data-i18n="inc_moto">GPS Ultra Compacto Impermeable</span></li>
-                            </ul>
+                    <!-- PLAN MOTOS -->
+                    <div class="glass-panel rounded-3xl border-2 border-cyber-red/30 hover:border-cyber-red transition-all flex flex-col justify-between overflow-hidden group">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=800&auto=format&fit=crop" alt="Plan Motos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-cyber-bg via-cyber-bg/40 to-transparent"></div>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-lg bg-cyber-red/20 border border-cyber-red/50 text-cyber-red font-mono text-xs font-bold uppercase" data-i18n="moto_category">MOTOCICLETAS</span>
                         </div>
 
-                        <a href="#contact" class="w-full py-4 rounded-xl bg-cyber-red text-white font-bold text-center hover:scale-[1.02] transition-all" data-i18n="btn_solicitar_moto">
-                            Solicitar para Moto
-                        </a>
+                        <div class="p-8 sm:p-10 pt-0 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-3xl font-black text-cyber-text mb-4" data-i18n="moto_title">Plan Motos</h4>
+
+                                <div class="space-y-4 my-6 p-6 rounded-2xl bg-cyber-bg/60 border border-cyber-border">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-cyber-muted" data-i18n="equip_install">Equipo + Instalación:</span>
+                                        <span class="text-2xl font-black text-cyber-text font-mono">$80 <span class="text-xs text-cyber-muted font-normal">(pago único)</span></span>
+                                    </div>
+                                    <div class="h-[1px] bg-cyber-border"></div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-cyber-muted" data-i18n="monthly_fee">Mensualidad de Servicio:</span>
+                                        <span class="text-3xl font-black text-cyber-red font-mono">$17 <span class="text-xs text-cyber-muted font-normal">/mes</span></span>
+                                    </div>
+                                </div>
+
+                                <ul class="space-y-3 text-sm text-cyber-text mb-8">
+                                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-red"></i> <span data-i18n="inc_1">Ubicación GPS en vivo 24/7</span></li>
+                                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-red"></i> <span data-i18n="inc_2">Apagado de motor vía celular</span></li>
+                                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-red"></i> <span data-i18n="inc_3">Acceso App Android, iOS y Web</span></li>
+                                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-cyber-red"></i> <span data-i18n="inc_moto">GPS Ultra Compacto Impermeable</span></li>
+                                </ul>
+                            </div>
+
+                            <a href="#contact" class="w-full py-4 rounded-xl bg-cyber-red text-white font-bold text-center hover:scale-[1.02] transition-all" data-i18n="btn_solicitar_moto">
+                                Solicitar para Moto
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -444,10 +600,10 @@
 
     </div>
 
-    <!-- MAIN.JS PARA INTERACTIVIDAD -->
+    <!-- MAIN.JS PARA INTERACTIVIDAD GLOBAL -->
     <script src="assets/js/main.js"></script>
 
-    <!-- INYECCIÓN INMEDIATA DESDE JS/CONFIG/COMPANY.JS -->
+    <!-- INYECCIÓN INMEDIATA DE CONFIGURACIÓN DESDE COMPANY.JS -->
     <script type="module">
         import { companyConfig } from './assets/config/company.js';
 
